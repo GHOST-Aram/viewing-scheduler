@@ -13,10 +13,19 @@ export class MockDataAccess extends DataAccess{
     })  
     
     public findExistingSchedule = jest.fn(async(tenantId: string, propertyId: string ) =>{
-        if(tenantId === '64c9e4f2df7cc072af2ac9e0' && propertyId === '64c9e4f2df7cc072af2ac9e0'){
+        if(tenantId === '64c9e4f2df7cc072af2ac9e0' && 
+            propertyId === '64c9e4f2df7cc072af2ac9e0'){
             return new ViewScheduler(postData)
         } 
 
         else return null
+    })
+
+    public findByReferenceId =  jest.fn(async(refId: string
+        ): Promise<HydratedViewScheduler| null> =>{
+        if(refId === '64c9e4f2df7cc072af2ac9e0')
+            return new ViewScheduler(postData)
+
+        return null
     })
 }
