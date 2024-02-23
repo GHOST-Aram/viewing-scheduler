@@ -20,5 +20,10 @@ export const routesWrapper = (controller: Controller): Router =>{
         validator.handleValidationErrors,
         controller.getByTenantId
     )
+
+    router.get('/property/:id', validator.validateReferenceId('id', { required: true}),
+        validator.handleValidationErrors,
+        controller.getByPropertyId
+    )
     return router
 }

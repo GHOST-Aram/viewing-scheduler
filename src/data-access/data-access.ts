@@ -13,6 +13,11 @@ export class DataAccess extends GenericDataAccess<ViewSchedulerModel, ViewSchedu
         return await this.model.findOne({ tenant: tenantId }, { property: propertyId })
     } 
 
+    public findByPropertyId = async( propertyId: string, paginator: Paginator 
+        ): Promise<HydratedViewScheduler []> =>{
+        return await this.model.find({ property : propertyId })
+    }
+    
     public findByTenantId = async( tenantId: string, paginator: Paginator 
         ): Promise<HydratedViewScheduler []> =>{
         return await this.model.find({ tenant : tenantId })

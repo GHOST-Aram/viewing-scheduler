@@ -39,6 +39,11 @@ export class MockDataAccess extends DataAccess{
         async( tenantId: string, paginator: Paginator ): Promise<HydratedViewScheduler[]> =>{
             return generateFakeDocs(paginator.limit)
     })
+
+    public findByPropertyId = jest.fn(
+        async( propertyId: string, paginator: Paginator ): Promise<HydratedViewScheduler[]> =>{
+            return generateFakeDocs(paginator.limit)
+    })
 }
 
 const generateFakeDocs = (limit: number): HydratedViewScheduler[] =>{
