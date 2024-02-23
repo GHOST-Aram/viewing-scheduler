@@ -5,6 +5,7 @@ export interface ViewScheduler{
     property: ObjectId
     viewDate: string
     viewTime: string
+    createdAt: Date
 }
 
 export type ViewSchedulerModel = Model<ViewScheduler>
@@ -25,6 +26,10 @@ export const schema = new Schema<ViewScheduler, ViewSchedulerModel>({
     viewTime: {
         type: String,
         required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
     }
 })
 
