@@ -25,4 +25,17 @@ export class Controller extends GenericController<DataAccess>{
             next(error)
         } 
     }
+
+    public  getByTenantId = async(req: Request, res: Response, next: NextFunction) =>{
+        const tenantId = req.params.id
+        const pagination = this.paginate(req)
+
+        try{
+            const application =  await this.dataAccess.findByTenantId(tenantId, pagination)
+
+            this.respondWithFoundResource(application, res)
+        } catch (error) {
+            next(error)
+        }
+    }
 }

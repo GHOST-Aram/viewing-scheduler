@@ -15,5 +15,10 @@ export const routesWrapper = (controller: Controller): Router =>{
         controller.getOne
     )
     router.get('/', controller.getMany)
+
+    router.get('/tenant/:id', validator.validateReferenceId('id', { required: true }),
+        validator.handleValidationErrors,
+        controller.getByTenantId
+    )
     return router
 }
