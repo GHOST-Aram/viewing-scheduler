@@ -1,6 +1,7 @@
 import { DataAccess } from "./data-access";
 import { HydratedViewScheduler, ViewScheduler, ViewSchedulerModel } from "./model";
 import { postData } from "../test/data/data";
+import { Paginator } from "../z-library/HTTP/http-response";
 
 export class MockDataAccess extends DataAccess{
     constructor(model: ViewSchedulerModel){
@@ -28,4 +29,20 @@ export class MockDataAccess extends DataAccess{
 
         return null
     })
+
+    public findWithPagination = jest.fn(async(paginator: Paginator
+        ): Promise<HydratedViewScheduler[]> =>{
+        return generateFakeDocs(paginator.limit)
+    })
+}
+
+const generateFakeDocs = (limit: number): HydratedViewScheduler[] =>{
+    const docs: HydratedViewScheduler[] = []
+
+    while(limit > 0){
+        docs.push(new ViewScheduler(postData))
+        limit --
+    }
+
+    return docs
 }
