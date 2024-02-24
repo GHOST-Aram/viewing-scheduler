@@ -5,7 +5,7 @@ import { postData, invalidData } from "./data/data";
 import { assert } from "../z-library/testing/response-assertion";
 
 describe('Viewing scheduler PUT Requests', () => {
-    test('Responds with Method not allowed, status 405: User defined Ids not allowed', 
+    test('Responds with Method not allowed, status 405: Batch update not allowed', 
         async() =>{
             const response = await request(app).put('/viewing-scheduler')
                 .send(postData)
@@ -14,7 +14,7 @@ describe('Viewing scheduler PUT Requests', () => {
         }
     )
 
-    test('Responds with validation errors, status 400: Ivalid assetId', 
+    test('Responds with validation errors, status 400: Ivalid reference Id', 
         async() => {
             const response = await request(app).put('/viewing-scheduler/64c9e4f2df7cc0tgd')
                 .send(postData)
