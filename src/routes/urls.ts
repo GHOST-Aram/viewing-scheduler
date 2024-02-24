@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { Controller } from "../controllers/controller"
-import { postValidators } from "./input-validation"
+import { patchValidators, postValidators } from "./input-validation"
 import { validator } from "../z-library/validation/validator"
 
 const router = Router()
@@ -31,6 +31,13 @@ export const routesWrapper = (controller: Controller): Router =>{
         postValidators,
         validator.handleValidationErrors,
         controller.updateOne
+    )
+
+    router.patch('/', controller.respondWithMethodNotAllowed)
+    router.patch('/:id', validator.validateReferenceId('id', { required: true}),
+        patchValidators,
+        validator.handleValidationErrors,
+        controller.modifyOne
     )
     return router
 }
