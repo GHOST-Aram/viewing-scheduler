@@ -13,7 +13,7 @@ describe('Viewing Scheduler PATCH route', () => {
         }
     )
 
-    test('Responds with validation errors, status 400: Ivalid application Id', 
+    test('Responds with validation errors, status 400: Ivalid reference Id', 
         async() => {
             const response = await request(app).patch('/viewing-scheduler/64c9e4f2df7cc0tgd')
 
@@ -25,7 +25,8 @@ describe('Viewing Scheduler PATCH route', () => {
     
     test('Responds with validation errors, status 400: Invalid input.', 
         async() =>{
-            const response = await request(app).patch('/viewing-scheduler/64c9e4f2df7cc072af2ac9e4')
+            const response = await request(app).patch(
+                '/viewing-scheduler/64c9e4f2df7cc072af2ac9e4')
                 .send(invalidData)
 
             assert.respondsWithBadRequest(response)
@@ -35,7 +36,8 @@ describe('Viewing Scheduler PATCH route', () => {
 
     test('Responds with modified resource, status 200: Patch success',
         async() =>{
-            const response = await request(app).patch('/viewing-scheduler/64c9e4f2df7cc072af2ac9e4')
+            const response = await request(app).patch(
+                '/viewing-scheduler/64c9e4f2df7cc072af2ac9e4')
                 .send(postData)
 
             assert.respondsWithSuccess(response)
@@ -45,7 +47,8 @@ describe('Viewing Scheduler PATCH route', () => {
 
     test('Responds with Not Found, status 404: Target does not exist', 
         async() => {
-            const response = await request(app).patch('/viewing-scheduler/64c9e4f2df7cc072af2ac9e8')
+            const response = await request(app).patch(
+                '/viewing-scheduler/64c9e4f2df7cc072af2ac9e8')
                 .send(postData)
 
             assert.respondsWithNotFound(response)
