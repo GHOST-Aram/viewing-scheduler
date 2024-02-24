@@ -25,5 +25,12 @@ export const routesWrapper = (controller: Controller): Router =>{
         validator.handleValidationErrors,
         controller.getByPropertyId
     )
+
+    router.put('/', controller.respondWithMethodNotAllowed)
+    router.put('/:id', validator.validateReferenceId('id', { required: true }),
+        postValidators,
+        validator.handleValidationErrors,
+        controller.updateOne
+    )
     return router
 }
