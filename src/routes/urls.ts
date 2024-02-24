@@ -39,5 +39,11 @@ export const routesWrapper = (controller: Controller): Router =>{
         validator.handleValidationErrors,
         controller.modifyOne
     )
+
+    router.delete('/', controller.respondWithMethodNotAllowed)
+    router.delete('/:id', validator.validateReferenceId('id', { required: true }),
+        validator.handleValidationErrors,
+        controller.deleteOne
+    )
     return router
 }

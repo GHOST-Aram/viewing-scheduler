@@ -51,6 +51,13 @@ export class MockDataAccess extends DataAccess{
             return new ViewScheduler(updateDoc)
         return null
     })
+
+    public findByIdAndDelete = jest.fn(async(assetId: string
+        ): Promise<HydratedViewScheduler | null> =>{
+        if(assetId === '64c9e4f2df7cc072af2ac9e4' )
+            return new ViewScheduler(postData)
+        return null
+    })
 }
 
 const generateFakeDocs = (limit: number): HydratedViewScheduler[] =>{
